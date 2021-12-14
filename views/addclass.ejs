@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Classes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/mainpage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Link to datatables js  -->
+    <link href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">   
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <%- include('./partials/sidebar.ejs') %>
+    <div class="content" style="background-size: cover;">
+        <div class="page-wrapper">
+            <% if (message) { %> 
+                <div style="text-align: center; " class="alert alert-<%= message.type %> alert-dismissible fade show" id="alert-message">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><%= message.message %></strong>
+                </div>
+            <% } %>
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject bold uppercase font-dark">Create Class</span>
+                    </div>
+                </div>                
+                <div class="portlet-body">
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-2">
+                                <div class="portlet-wrapper">
+                                    <div class="personal-info">
+                                        <img src="./img/gv.jpg" alt="">
+                                        <p class="usr-name"><%- classall.name %></p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-5">
+                                <div class="portlet-wrapper">
+                                    <div class="group">      
+                                        <input type="text" name="cname" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Class name<span style="color:red">*</span></label>
+                                    </div>
+                                    <div class="group">      
+                                        <input type="number" size="50" name="size" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Quantity<span style="color:red">*</span></label>
+                                    </div>
+                                    <div class="group">      
+                                        <textarea type="text" name="description" rows="3" spellcheck="True"></textarea>
+                                        <span class="focus-border"></span>
+                                        <label>Description</label>
+                                    </div>
+                                      
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-5">
+                                <div class="group">      
+                                    <input type="date" name="date_start" value="2000-09-17" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Class start date<span style="color: red;">*</span></label>
+                                </div>
+                                <div class="group">      
+                                    <input type="date" name="date_end" value="2020-09-17" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Class end date<span style="color: red;">*</span></label>
+                                </div>
+                                <div>     
+                                    <label class="label-assign">Assign student into classroom</label>
+                                    <div class="btn-assign">
+                                        <button class="btn btn-default linkbtn" data-toggle="modal" data-target="#exampleModal">
+                                            <i class="fa fa-user-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="butt text-center">
+                            <button class="btn btn-outline-primary btn-lg">Create Class</button>
+                        </div>
+                    </form>           
+                </div>
+            </div>
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject bold uppercase font-dark">Created Class List</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <table id="contacts" class="table table-striped table-bordered" style="width:100%" >
+                                <thead>
+                                    <tr>
+                                        <th>Class Name</th>
+                                        <th>Quantity</th>
+                                        <th>Description</th>
+                                        <th>Date Start</th>
+                                        <th>Date End</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% classall.forEach((data)=>{ %>
+                                        <tr>
+                                            <td><%= data.cname %></td>
+                                            <td><%= data.size %></td>
+                                            <td><%= data.description %></td>
+                                            <td><%= data.date_start.getDate() %>/<%= data.date_start.getMonth() + 1 %>/<%= data.date_start.getFullYear() %></td>
+                                            <td><%= data.date_end.getDate()%>/<%= data.date_end.getMonth() + 1%>/<%= data.date_end.getFullYear()%></td>
+                                            <td><% if(data.status == 1){ %>
+                                                Active
+                                            <% }else{ %>
+                                                Unactive
+                                            <% } %></td>
+                                            <td>
+                                                <a class="btn btn-xs btn-warning" href="/editClass/<%= data.cid %>">
+                                                    <i alt="Edit" class="fa fa-pencil"> Edit</i>
+                                                </a>
+                                                <a href="/addclass/<%= data.cid %>" class="btn btn-xs btn-danger delete" name="delete-contact" onclick="return confirm_delete()">
+                                                    <i alt="Delete" class="fa fa-trash"> Delete</i>
+                                                </a>          
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    	
+    <!-- Modal for assign -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <form action="/assignStudent" method="POST" role="form">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Assign Student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">    
+                    <select class="form-select form-control selector" name="cid" style="width:100%" >
+                        <option selected>Choose Class</option>
+                        <% classall.forEach((data)=>{ %> 
+                        <option value="<%= data.cid %>">
+                            <%= data.cid %>-<%= data.cname %>
+                        </option>
+                        <% }) %>
+                      </select>
+                    <div style="font-size:1rem;margin-bottom:1rem;margin-left:0.2rem;margin-right:0.2rem">
+                        <span style="color: rgb(113, 116, 160);">Search student by full name </span> 
+                    </div>
+                    <!-- <input type="text" class="form-control" placeholder="First and last name"> -->
+                    <hr width="100%">
+                        <% if (count > 1){ %> 
+                            <span><ion-icon name="search-outline"></ion-icon>Search Results: </span><span><%= count %> students</span>
+                        <% } else if(count < 1){ %> 
+                            <span><ion-icon name="search-outline"></ion-icon>Search Results: </span><span>0 student</span>
+                        <% }else{ %>
+                            <span><ion-icon name="search-outline"></ion-icon>Search Results: </span><span><%= count %> student</span>
+                        <% } %>
+                    <hr>
+                    <div class="selectPopup">
+                        <!-- <a class="select-all">
+                            <label class="container-checkbox">Select All
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                        </a> -->
+                        <% student.forEach((data)=>{ %>
+                            <label class="container-checkbox"><%= data.name %>
+                                <input type="checkbox" name="sid" value="<%= data.sid %>">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                            
+                        
+                        <% }) %>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Assign</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <script src="./js/alert.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.11.3/js/dataTables.bootstrap3.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="./js/dropdown.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+    
+            $('#contacts').DataTable();
+            
+        });
+        function confirm_delete(){
+           return confirm('Are you sure to delete this class?');
+       }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

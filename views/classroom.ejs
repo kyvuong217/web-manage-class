@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/classroom.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">    
+</head>
+
+
+<body>
+    <!--Navbar-->
+    <%- include('./partials/cls-nav.ejs') %>
+    <!--End Navbar-->
+    <!-- Sidebar -->
+    <%- include('./partials/cls-sidebar.ejs') %>
+    <!-- End Sidebar-->
+    
+    <!--Content-->
+    
+    <div class="content">
+        <% if (message) { %> 
+            <div style="text-align: center; " class="alert alert-<%= message.type %> alert-dismissible fade show" id="alert-message">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong><%= message.message %></strong>
+            </div>
+        <% } %>
+        <div class="jumbotron">
+            <div class="col-md-7">
+                <h1><%= details.cname %></h1>
+                <p class="description"><%= details.description %>
+                </p>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+
+        
+        <!-- POST -->
+        
+        <% if (teacher == true){ %>
+        <section>
+            <div class="wrapper_post">
+                <div class="box-inside">
+                    <form action="/classroom/<%= details.cid %>" method="POST">
+                        <div class="post_content">  
+                            <input type="hidden" value="<%= key.tid %>" name="uid">
+                            <textarea class="post-board" name="content" placeholder="Enter your message to the class"  rows="5" required></textarea>
+                            <span class="focus-border"></span>
+                        </div>
+                        <br>
+                        <input type="text" name="title" id="title" value="#" class="form-control collapse fade" placeholder="Type your title hashtag ..." maxlength="30" style="color: #1967d2;">
+                        <div class="tools">
+                            <div class="icon">
+                                <ion-icon name="image-outline"></ion-icon>
+                                <ion-icon name="link-outline"></ion-icon>
+                                <ion-icon name="pricetag-outline" data-target="#title" data-toggle="collapse"></ion-icon>
+                            </div>
+                            <div><button class="btn btn-outline-primary" type="submit"><i class="fa fa-paper-plane"></i>Post</button></div>    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <% } %>
+        <!-- Story-->
+        <% stories.forEach((story)=>{ %>
+        <div class="story">
+            <div class="news">
+                <img src="./img/gv.jpg" alt="logo" class="avatar">
+                <span class="text-wrapper">
+                    <div class="yourname"><%= details.name %></div>
+                    <span class="news-date"><%= story.time.getDate() %> thg <%= story.time.getMonth() + 1 %></span>
+                </span>
+                <div class="dropdown pull-right">
+                    
+                    <ion-icon class="btn dropbtn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" name="ellipsis-vertical-outline" style="font-size: 25px;" ></ion-icon>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" data-target="#n<%= story.nid %>" data-toggle="modal" style="cursor:pointer"><ion-icon name="build-outline"></ion-icon>Change</button>
+                        <a  class="dropdown-item" href="/delNews/<%= story.cid %>/<%= story.nid %>"><ion-icon name="trash-outline"></ion-icon>Delete</a>
+                        <a class="dropdown-item" id="hide" data-toggle="collapse" data-target="#hide-<%= story.nid %>" style="cursor: pointer;"><ion-icon name="eye-off-outline"></ion-icon>Hide</a>
+                    </div>
+                </div> 
+                
+            </div>
+            <div class="body-news collapse show" id="hide-<%= story.nid %>">
+
+
+                <div class="content-news">
+                    <%= story.content %>
+                    <div class="topic">
+                        <%= story.title %>
+                    </div>
+                </div>
+                <form action="/comment/<%= details.cid %>" method="POST">
+                    <div class="commentBox">
+                        <% if (teacher == true) { %>
+                            <input type="hidden" name="tid" value="<%= details.tid %>">
+                            <img src="/img/gv.jpg" alt=""  class="avatar">
+                        <% }else{ %>
+                            <img src="/img/student.png" alt=""  class="avatar">
+                            <input type="hidden" name="sid" value="<%= key.sid %>">
+                        <% } %>
+                        <input type="hidden" name="nid" value="<%= story.nid %> ">
+                        
+                        
+                        <button type="submit" class="send">
+                            <ion-icon name="paper-plane-outline"></ion-icon>
+                        </button>
+                        <textarea class="cmt" rows="1" name="content" placeholder="Enter your message in here !!!"></textarea>
+                    </div>
+                </form>
+                <% cmt.forEach((cmt)=>{ 
+                    if(cmt.nid == story.nid){
+                %> 
+                <div class="commentLine">
+                    <img src="./img/student.png" alt="logo" class="avatar">
+                    <span class="content">
+                        <div class="yourname"><%= cmt.name %></div>
+                        <div class="time" style="font-size: 12px;color: #aaa;"><%= cmt.c_time.getDate() %> thg <%= cmt.c_time.getMonth() + 1 %></div>
+                        <span><%= cmt.c_content %></span>   
+                    </span>
+                    
+                </div>
+                <% }}) %>
+            </div>
+        </div>
+        <% }) %>
+        <% stories.forEach((story)=>{ %>
+        <div class="modal fade" id="n<%= story.nid %>">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><ion-icon name="build-outline" style="vertical-align: top;padding-right: 7px;font-size: 25px;"></ion-icon>Fix box</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form role="form" action="/ChangeStory/<%= story.cid %>/<%= story.nid %>" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4 mt-4">
+                                    <textarea class="form-control" name="content" rows="6" spellcheck="True" placeholder="Enter your message in here !!!" style="resize: none;"><%= story.content %></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <input type="text" name="title" id="title" value="<%= story.title %>" class="form-control" placeholder="Untitled" maxlength="30" style="color: #1967d2;">         
+                                </div>
+                                <div class="mb-4">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Change another file</label>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="./img/under-maintain.jpg" alt="" class="engineer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="saveEdit btn btn-primary">Save</button>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <% }) %>
+
+            <!-- /POST -->
+    </div>
+    <!--/Available script-->
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Script hand made-->
+    <script src="./js/data.js"></script>
+    <script src="./js/alert.js"></script>
+    <script src="./js/dropdown.js"></script>
+
+    <script>
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+</body>
+</html>

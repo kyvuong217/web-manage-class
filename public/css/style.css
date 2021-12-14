@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Tinos:ital,wght@1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul li{
+    list-style-type: none;
+}
+.banner{
+    /* background: linear-gradient(rgba(0,0,0,0.2),#009688), url(../img/bgclass3.jpg); */
+    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.75)), url(../img/bgclass3.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+}
+.banner-text{
+    text-align: center;
+    color: #fff;
+    padding-top: 100px;
+}
+.banner-text h1{
+    font-size: 60px;
+    /* font-family: 'Kaushan Script', cursive; */
+    font-family: 'Tinos', serif;
+
+}
+.banner-text p{
+    padding-top: 10px;
+    font-size: 20px;
+    font-style: italic;
+}
+.banner-btn{
+    margin: 70px auto 0;
+}
+.banner-btn a{
+    width: 150px;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0 10px;
+    padding: 10px 0;
+    color: #fff;
+    border: .5px solid #009688;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    transition: color 0.5s;
+    border-radius: 25px;
+    background: transparent;
+
+}
+.banner-btn span{
+    border-radius: 25px;
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #009688;
+    z-index: -1;
+    transition: 0.5s;
+}
+.banner-btn a:hover span{
+    width: 100%;
+    
+    
+    
+}
+.banner-btn a:hover{
+    color: #000;
+    /* border: none; */
+
+}
+.navbar{
+    width: 85%;
+    margin:auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.logo{
+    width: 170px;
+    cursor: pointer;
+    
+}
+.navbar ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a{
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+.navbar ul li::after{
+    content: '';
+    background: #009688;
+    height: 3px;
+    width: 0;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+    
+}
+.navbar ul li:hover::after{
+    width: 100%;
+}
+.feature img{
+    width: 100px;
+    height: 100px;
+    transition: transform .7s ease-in-out;
+}
+/* .feature img:hover{
+    cursor: default;
+    transform:rotateY(360deg);
+    transition: all 0.3s ease-in-out 0s;
+} */
+#features{
+    position: relative;
+}
+#features::after{
+    left: 50%;
+    bottom: -50px;
+    content: "";
+    position: absolute;
+    border: 25px solid;
+    border-color: #EAEAEA transparent transparent;
+    display: block;
+    margin-left: -13.5px;
+}
+#subscribe .btn{
+    padding: 22px 46px;
+    margin-top: 14px;
+    font-size: 19px;
+    color: #fff;
+}
+#subscribe{
+    padding: 71px 0 40px;
+}
+#subscribe h2{
+    margin: 68px 0 35px ;
+}
+section h2{
+    font-size: 54px;
+    color: #34495e;
+}
+.form-control{
+    border: 2px solid #e8e8e8;
+}
+.left-inner{
+    position: relative;
+}
+.left-inner input{
+    padding-left: 54px;
+}
+.left-inner textarea{
+    padding-left: 54px ;
+    
+}
+.left-inner i{
+    position: absolute;
+    color: #ADC1D1;
+    font-size: 20px;
+    left: 20px;
+    pointer-events: none;
+    top: 25px;
+}
+.input-lg{
+    padding: 20px 16px;
+    height: 67px;
+    font-size: 18px;
+    border-radius: 6px;
+}
+.btn i{
+    padding: 0px 10px;
+}
+#roles{
+    background: url("../img/bg3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 120vh;
+    padding-top: 100px;
+}
+    /* background-attachment: fixed; */
+.container{
+    padding-left:15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Section role */
+.box-ql {
+    margin-top: 3rem;
+}
+[data-aos][data-aos][data-aos-delay="400"].aos-animate, body[data-aos-delay="400"] [data-aos].aos-animate {
+    transition-delay: .4s;
+}
+.box-ql .circle {
+    width: 11rem;
+    height: 11rem;
+    border-radius: 50%;
+    box-shadow: -9px 10px 26px #0000001f;
+    background: linear-gradient(100deg, #76bff7 0, #1986da 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+.box-ql p {
+    margin-top: 2.2rem;
+    font-size: 1.2rem !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+}
+.box-ql .item {
+    margin-bottom: 4.8rem;
+    position: relative;
+    z-index: 2;
+}
+
+.content-center {
+    width: 100%;
+    background: #1986da;
+    color: #fff;
+    border-radius: 10px;
+    padding: 6rem 3.5rem;
+    position: relative;
+}
+/* Img dotted */
+.content-center .img-dotted.right {
+    position: absolute;
+    right: -105px;
+    top: 104px;
+    z-index: -1;
+}
+.content-center .img-dotted.left {
+    position: absolute;
+    left: -105px;
+    top: 104px;
+    z-index: -1;
+}
+.content-center .content-list{
+    text-align: center;
+}
+.content-center .content-list li{
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+}
+.content-center p.text-bot {
+    border: 1px dotted #fff;
+    border-radius: 10px;
+    padding: 22px;
+    text-align: center;
+    text-shadow: 1px 2px 1px #0000004f;
+    font-size: 2rem !important;
+    line-height: inherit;
+}
+.box-ql .item:last-child {
+    margin-bottom: 0;
+}
+/* Bot section */
+#middle{
+    background-color: #fff;
+    min-height: 400px;
+    
+}
+#bot{
+    background: url("../img/footer-image.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    min-height: 60vh;
+    background-size: contain;
+}
+.text{
+    text-align: center;
+    padding: 81px;
+}
+.text h3{
+    text-shadow: 1px 4px 5px #0000004f;
+    font-size: 35px;
+}
+.text p{
+    font-size: 23px;
+}
+.text a{
+    /* font-size: 25px; */
+    margin-top: 10px;
+    width: 190px;
+    height: 50px;
+    color: #fff;
+    border-radius: 25px;
+    margin-left: 15px;
+
+}
+.pict img{
+    box-shadow: 0 8px 9px -11px black;
+    height: 470px;
+}

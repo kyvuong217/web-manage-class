@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+
+}
+body{
+  /* background: linear-gradient(#2193b0, #6dd5ed); */
+  background: url("/img/Bg-landing-page-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.container .box-log{
+    background-color: rgba(255, 255, 255, 1);
+    margin-top: 5rem;
+    border: 2px solid #cdd;
+    border-radius: 20px;
+    margin-bottom: 5rem;
+    z-index: -1;
+    box-shadow: -9px 10px 26px #0000001f;
+
+}
+
+.right-item{
+    padding: 5px;
+    margin-top: 50px;
+}
+.bigtext{
+    margin-bottom: 50px;
+}
+.login {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url("/img/Working\ from\ anywhere-rafiki\ \(1\).svg");
+  background-size: cover;
+  background-position: center;
+  
+}
+
+.login-heading {
+  font-weight: 500;
+}
+
+.btn-login {
+  font-size: 15px;
+  letter-spacing: 0.05rem;
+  padding: 10px 29px;
+  border-radius: 25px;
+  width: 100%;
+}
+.form-floating{
+    position: relative;
+    font-size: 20px;
+}
+.form-floating i{
+    position: absolute;
+    top:10px;
+    left:10px;
+}
+/* top right bot left*/
+.form-floating input{
+    /* padding-left: 45px; */ 
+    padding: 6px 0 6px 40px;
+    margin-bottom: 25px;
+}
+h2, h4{
+  text-align: center;
+}
+h4{
+  font-weight: 400;
+  color: #2193b0;
+}
+.user-row{
+  /* margin-left: 2.5rem; */
+  display: flex;
+  justify-content: center;
+}
+
+.user{
+  border: 2px solid #cdd;
+  padding: 15px;
+  border-radius: 50%;  
+}
+.user:hover{
+  cursor: pointer;
+  background-color: #cdd;
+  transition: 1s;
+}
+
+.text-under{
+  text-align: center;
+  font-size: 20px;
+}
+hr{
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  height: 1px;
+  background: #2193b0;
+
+}
+.modal input[type=text],.modal input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+.modal input[type=text]:focus, .modal input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.modal button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.modal button:hover {
+  opacity:1;
+}
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+.modal .container {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+/* Checkbox */
+[type=radio]{
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}

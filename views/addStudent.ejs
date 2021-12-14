@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Students</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/mainpage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+<body>
+    
+    <%- include('./partials/nav.ejs') %>
+    <!-- Side bar start-->
+    <%- include('./partials/sidebar.ejs') %>
+    <div class="content">
+        <div class="container">
+            <!-- <div class="page-wrapper"> -->
+                <% if (message) { %> 
+                    <div style="text-align: center; " class="alert alert-<%= message.type %> alert-dismissible fade show" id="alert-message">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong><%= message.message %></strong>
+                    </div>
+                <% } %>
+                <div class="packet">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="left-part">
+                                <!-- <img src="./img/addnew.png" alt="" class="logo-users"> -->
+                                <h3 style="position: relative ;top:80%; color: #19B3D3;">ADD STUDENTS</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="tab-header pl-3 pr-5">
+                                <ul class="nav nav-tabs justify-content-center mb-5" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" id="slide1-tab" data-toggle="tab" href="#slide1" role="tab" aria-controls="slide1" aria-selected="true">Add Individual Users</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Add Bulk of Users</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="slide1" role="tabpanel" aria-labelledby="slide1-tab">
+                                    <form action="" method="POST">
+                                        <div class="tab-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="group">      
+                                                        <input type="text" name="sid" required>
+                                                        <span class="highlight"></span>
+                                                        <span class="bar"></span>
+                                                        <label>ID Student<span style="color:red">*</span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="group">      
+                                                        <input type="text" name="name" required>
+                                                        <span class="highlight"></span>
+                                                        <span class="bar"></span>
+                                                        <label>Full name<span style="color:red">*</span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="group">      
+                                                        <input type="email" name="email" required>
+                                                        <span class="highlight"></span>
+                                                        <span class="bar"></span>
+                                                        <label>Email<span style="color:red">*</span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="group">      
+                                                        <input type="password" name="password" required>
+                                                        <span class="highlight"></span>
+                                                        <span class="bar"></span>
+                                                        <label>Password<span style="color:red">*</span></label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="col-md-12 text-center">
+                                                    <button class="btn btn-outline-info">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--Tab 2-->
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="tab-body">
+                                        <p class="tab-note mt-2 w-100">Add bulk of students from excel</p>
+                                        <form action="/uploadfile" enctype="multipart/form-data" method="POST">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="text-wrapper mt-3">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="downloadfile">
+                                                                <a class="csvicon" href="/excelConfig">
+                                                                    <span class="text">Download excel file template</span>
+                                                                </a>
+                                                            </div> 
+                                                        </div>
+                                                         <div class="col-md-6 ">
+                                                            <h4>Import students from Excel</h4>
+                                                            <label class="btn btn-primary" for="upload_template" style="padding: 6px 8px">
+                                                                <i class="fa fa-upload"> Upload file</i>
+                                                            </label>
+                                                            <input class="upload" id="upload_template" type="file" name="uploadfile" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'>
+
+                                                            <label class="changefile" id="changefile" style="display:none;font-size: 15px;"> 
+                                                                <span class="changeicon pull-right">
+                                                                    <label for="upload_template">
+                                                                        <ion-icon name="options"></ion-icon>
+                                                                    </label>
+                                                                </span>
+                                                            </label>
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="margin-top:20px">
+                                        <div class="text-center">
+                                            <button class="btn btn-outline-primary" type="submit" value="Upload Excel">Import file </button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+    <!--Side bar end-->
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="./js/alert.js"></script>
+    <script src="./js/dropdown.js"></script>
+
+    <script>
+        
+        $(document).on('click', 'ul li', function(){
+    			$(this).addClass('active').siblings().removeClass('active');
+            })
+        $('input[type=file]').on("change", function(){
+            var fileName = $(this).val().split("\\").pop();
+            document.getElementById("changefile").style.display = "block"
+            $(this).siblings(".changefile").addClass("selected").html("<ion-icon name='document-text-outline' style='vertical-align:middle;margin-bottom:2px;font-size:22px;padding-right:5px'></ion-icon>" + fileName)
+        })  
+        
+    </script>
+</body>
+</html>
+
+

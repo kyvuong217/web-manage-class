@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/classroom.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!--Navbar-->
+    <%- include('./partials/cls-nav.ejs') %>
+    <!--End Navbar-->
+    <!-- Sidebar -->
+    <%- include('./partials/cls-sidebar.ejs') %>
+    <!-- End Sidebar-->
+    
+    <!--Content-->
+    <div class="content">
+        <div class="teacher-row">
+            <div class="styletext">
+                <h3>Teacher</h3>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="business-card">
+                    <img src="./img/gv.jpg" alt="" class="avatar">
+                    <span class="your_name"><%= gt.name %></span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="student-row">
+            <div class="styletext">
+                <span style="display: inline;">
+                    <h3>ClassMates</h3>
+                    <span class=" quantity pull-right">Total <%= quantity %> students</span>
+                </span>
+                
+                
+                <hr>
+            </div>
+            <div class="row">
+                <% member.forEach((mem)=>{ %>  
+                <div class="business-card" data-toggle="modal" data-target="#<%= mem.sid %>">
+                    <img src="./img/student.png" alt="" class="avatar">
+                    <span class="your_name"><%= mem.name %></span>
+                    
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <!-- Modal popup-->
+                <!-- Modal for edit -->
+                <% member.forEach((mem)=>{ %>
+                <div class="modal fade" id="<%= mem.sid %>" >
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content mct">
+                            <!-- Modal Header -->
+                            <!-- Modal body -->
+                            <div class="modal-body mdb">
+
+                                <div class="row">
+                                    <div class="col-lg-5 box-left">
+                                        <div class="left-item">
+                                            <div class="component1 text-center">
+                                                <img src="./img/student.png" alt="" class="profile-icon">
+                                                <div class="typetext">
+                                                    <%= mem.name %>
+                                                </div>
+                                            </div>
+                                            <div class="component2">
+                                                <div class="card-body">
+                                                    <p class="mb-3"><strong class="pr-1"><ion-icon name="person-outline"></ion-icon> Student ID:</strong><%= mem.sid %></p>
+                                                    <p class="mb-3"><strong class="pr-1"><ion-icon name="rocket-outline"></ion-icon> Class:</strong><%= mem.cname %></p>
+                                                    <p class="mb-3"><strong class="pr-1"><ion-icon name="mail-outline"></ion-icon> Email:</strong><%= mem.email %></p>
+                                                    <p class="mb-3"><strong class="pr-1"><ion-icon name="call-outline"></ion-icon> Phone:</strong><%= mem.phone %></p>
+                                                    <p class="mb-3"><strong class="pr-1"><ion-icon name="gift-outline"></ion-icon> Dob:</strong><%= mem.dob.getDate() %>-<%= mem.dob.getMonth() + 1%>-<%= mem.dob.getFullYear() %></p>
+                                                    <p class="mb-3"><strong class="pr-1"><ion-icon name="location-outline"></ion-icon> WorkPlace:</strong><%= mem.workplace %></p>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 box-right">
+                                        <div class="header-text">
+                                            <h3>Student Card
+                                                <div style="display:flex;height: 1rem;"></div>
+                                            </h3>
+                                        </div>
+                                        <div class="container">
+                                            <h3 class="mt-3 mb-4" style="font-size: 20px;font-weight: 700;"><ion-icon name="copy-outline"></ion-icon>Parent Information</h3>
+                                            <div class="card-body pt-0">
+                                                <table class="table table-bordered table-striped table-hover">
+                                                    <tr>
+                                                    <th width="30%">Name</th>
+                                                    <td><%= mem.p_name %></td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th width="30%">Job</th>
+                                                    <td><%= mem.p_job %></td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th width="30%">Phone</th>
+                                                    <td><%= mem.p_phone %></td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th width="30%">Email</th>
+                                                    <td><%= mem.p_email %></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <!--/content-->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="./js/data.js"></script>
+    <script src="./js/dropdown.js"></script>
+
+</body>
+</html>

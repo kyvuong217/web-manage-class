@@ -1,0 +1,131 @@
+footer .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-family:sans-serif;
+
+}
+footer{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 35px 100px;
+    background:#111;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+footer .container .aboutus{
+    width: 40% ;
+    margin-right: 30px;
+
+} 
+footer .container h2{
+    position: relative;
+    margin-bottom: 15px;
+    color: #fff;
+    font-weight: 500; 
+    font-size: 25px;
+}
+footer .container h2:before{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    width: 50px;
+    height: 2px;
+    background: #f00;
+}
+footer .aboutus p{
+    color: #999;
+    line-height: 1.4;
+    
+}
+footer .iconfooter{
+    display: flex;
+    margin-top: 20px;
+}
+footer .iconfooter li{
+    list-style: none;
+}      
+footer .iconfooter a{
+    background: #222;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+footer .iconfooter a:hover{
+    transform: translateY(-10px);
+}
+footer .iconfooter li a .fa{
+    color: #fff;
+    font-size: 20px;
+}
+footer .links{
+  display: block;
+  position: relative;
+  width: 25%;
+}
+footer .links ul li{
+  list-style: none;
+}
+
+footer .links ul a{
+  text-decoration: none;
+  color: #999;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+footer .links ul a:hover{
+  color: #fff;
+}
+footer .contact{
+  width: calc(35% - 30px);
+  margin-right: 0px !important;
+}
+footer .contact .info{
+  position: relative;
+}
+footer .contact .info li{
+  display: flex;
+  margin-bottom: 16px;
+  color: #999;
+}
+footer .contact .info li a{
+  color: #999;
+  text-decoration: none;
+}
+footer .contact .info li a:hover{
+  color: #fff;
+}
+footer .contact .info li span:first-child{ /* :nth-child(1) */
+ color: #fff;
+ font-size: 20px;
+ margin-right: 10px;
+}
+@media (max-width: 991px)
+{
+    footer
+    {
+        padding: 40px;
+    }
+    footer .container
+    {
+        flex-direction: column;
+    }
+    footer .container .aboutus
+    {
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+    footer .container .aboutus,.links,.contact
+    {
+        width: 100%; 
+    }
+}

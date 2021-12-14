@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Class</title>
+    <base href="/"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/mainpage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Link to datatables js  -->
+    <link href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">  
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <%- include('./partials/sidebar.ejs') %>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+              <!-- general form elements -->
+                    <div class="card card-primary border-secondary">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Form</h4>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form role="form" action="" method="post">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Class Name</label>
+                                    <input type="text" class="form-control" name="cname" placeholder="Enter name of class" value="<%= editor.cname %>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Quantity</label>
+                                    <input type="number" class="form-control" name="size" placeholder="Enter number for class" value="<%= editor.size %>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" name="description" placeholder="Change your description" ><%= editor.description %></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Date Start</label>
+                                        <input type="date" class="form-control" name="date_start" placeholder="Enter number of term" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Date End</label>
+                                        <input type="date" class="form-control" name="date_end" placeholder="Enter number of term" required>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="card-footer bg-white">
+                                <button type="submit" class="btn btn-info btn-block">Save it</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="./js/dropdown.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

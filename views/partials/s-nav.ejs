@@ -1,0 +1,18 @@
+<nav class="navbar navbar-light">
+    <a class="navbar-brand">
+        <h3>Page For <span>Student</span></h3>
+    </a>
+    <div class="right_items">
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-none dropdown-toggle" type="button" data-toggle="dropdown">
+                <span class="u_name" style="color: aliceblue;">Hi, <%= key.name %></span> 
+                <img src="./img/graduated.png" alt="logo" class="avatar">
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/changePassword"><i class="fa fa-key"></i>Change Password</a>
+                <a class="dropdown-item" href="/edit_profile/<%= key.sid %>"><i class="fa fa-user"></i> Edit Profile</a>
+                <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out"></i> Log out</a>
+            </div>
+        </div>
+    </div>
+</nav>

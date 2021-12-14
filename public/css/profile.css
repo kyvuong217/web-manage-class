@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+
+}
+.content{
+    margin-left: 250px;
+    background: url("/img/dashboard.png");  
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 89vh;
+    
+}
+:root{
+    --white: #fff;
+    --grey: #cdd;
+    --blue: #19B3D3;
+    --lightblack: #22242A;
+    --sidebar: #2F323A;
+    --nav: #22242A;
+    --orange: #FF5733;
+}
+
+.navbar{
+    background: #B3C2ED;
+    box-shadow: -9px 10px 26px #0000001f;
+}
+.navbar-brand h3{
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 900;
+    
+}
+.navbar-brand span{
+    color: #47b4f3bf;
+
+}
+.left-pane{
+    position: relative;
+    left: 0;
+    background:#fff;
+    width: 250px;
+    height: 100%;
+    transition: 0.5s;
+    transition-property: left;
+
+}
+.first_item{
+    padding-top: 25px;
+}
+.left-pane ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.left-pane ul li{
+    position: relative;
+    list-style: none;
+    line-height: 65px;
+    transition: 0.5s;
+    transition-property: background;
+}
+.left-pane ul li a{
+    font-size: 17px;
+    color: #000;
+    padding-left: 40px;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.left-pane ul li:hover{
+    background: var(--blue);
+    font-weight: 500;
+}
+/* .active{
+    background: var(--blue);
+    font-weight: 500;
+} */
+.avatar{
+    width: 45px;
+    height: 45px;
+    border-radius: 100px;
+    cursor: pointer;
+
+}
+.u_name {
+    padding-right: 15px;
+}
+.profile_image{
+    width: 130px;
+    height: 130px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+}
+.left-pane h4{
+    color:#aaa;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.left-pane .icon{
+    padding-right: 10px;
+    font-size: 20px;
+    
+}
+.menu-icon{
+    padding-left: 50px;
+    margin-bottom: 25px;
+}
+.menu-icon ion-icon{
+    position: absolute;
+    font-size: 35px;
+    cursor: pointer;
+    z-index: 1;
+}
+.menu-icon ion-icon:hover{
+    color: #19B3D3;
+}
+/* checkbox */
+#check:checked ~ .left-pane {
+    left: -190px;
+}
+#check:checked ~ .left-pane a .title{
+    display: none;  
+
+}
+#check:checked ~ .left-pane .wrapper{
+    margin-left: 0;
+
+}
+#check:checked ~ .left-pane a{
+    font-size: 25px;
+    margin-left: 170px;
+    width: 80px;
+}
+input[type=checkbox]{
+    display: none;
+
+}
+/* Content */
+.seperate{
+    margin-left: 10px;
+    width:90%;
+    background-color: white;
+}
+.content{
+    margin-left: 250px;
+    background: url("/img/dashboard.png");  
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 95vh;
+    
+}
+#check:checked ~ .content{
+    margin-left: 60px;
+}
+/* dropdown */
+.right_items{
+    margin-right: 20px;
+}
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+.dropdown-menu{
+    background: #EEEEEE;
+    width: 215px;
+}
+.dropdown-menu a{
+   color: #000;
+   font-size: 15px;
+}
+.dropdown-menu a i{
+    font-size: 15px;
+    margin-right: 10px;
+ }
+ /* Dashboard interface */
+.box-header{
+    background: #fff;
+    width: 80%;
+    border-radius: 20px;
+    margin: auto;
+    opacity: 0.9;
+    box-shadow: 5px 5px 5px 5px #0000001f;
+
+}
+.heading{
+    font-size: 35px;
+}
+.style-text{
+    color: #ffa500b8;
+}
+.header-img{
+    width: 430px;
+    height: 100px;
+    position: absolute;
+    top: -110px;
+    right: -30px;
+}
+
+.wrap-content{
+    /* margin-top: 10px; */
+    transform: translateY(25px);
+}
+.panel-control{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 150px;
+
+}
+.panel-control ion-icon{
+    /* float:right; */
+    font-size: 50px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: black; 
+    display: block!important;
+    margin: auto;
+}
+
+.box-container{
+    position: relative;
+    top: 25px;
+    max-height: 700px;
+    left: 25px;
+    padding: 15px;
+    background-color: #fff;
+    max-width: 95%;
+    border-radius: 25px;
+}
+.profile-btn{
+    border-radius: 20px;
+    transition: 0.5s;
+    
+}
+.pane-info .container{
+    width: 100%;
+    border-radius: 5%;
+    background-color: #fff;
+    border-radius: .25rem;
+    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+    background-clip: border-box;
+    border: 0 solid transparent;
+
+}
+
+.profile-btn i{
+    padding: 0 10px;
+    font-size: 18px;
+}
+
+.labels {
+    font-size: 15px;
+}
+
+.textstyle{
+    border-top: 2px solid #19B3D3;
+    border-right: 2px solid #19B3D3;
+    border-radius: 5px;
+    padding: 2px;
+    color: #50ABC7;
+    font-weight: 100;
+}
+.text-style1{
+    border-left: 2px solid #19B3D3 ;
+    border-bottom: 2px solid #19B3D3;
+    border-radius: 5px;
+    padding: 2px;
+    color: #50ABC7;
+    font-weight: 100;
+    }
+.form-floating{
+position: relative;
+font-size: 20px;
+}
+.form-floating ion-icon{
+position: absolute;
+top:10px;
+left:10px;
+}
+.form-floating input{
+/* padding-left: 45px; */ 
+padding: 6px 0 6px 40px;
+margin-bottom: 15px;
+}
+
+/* button file */
+[type="file"] {
+    /* Style the color of the message that says 'No file chosen' */
+        color: #878787;
+    }
+[type="file"]::-webkit-file-upload-button {
+        background: #ED1C1B;
+        border: 2px solid #ED1C1B;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        outline: none;
+        padding: 10px 25px;
+        text-transform: uppercase;
+        transition: all 1s ease;
+    }
+    
+[type="file"]::-webkit-file-upload-button:hover {
+        background: #fff;
+        border: 2px solid #535353;
+        color: #000;
+    }
+.btn ion-icon{
+        font-size: 18px;
+        padding-right: 10px;
+        vertical-align: middle;
+        padding-bottom: 5px;
+        
+    }
+.hr-style{
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    }
+.header-style{
+    color: #19B3D3;
+    }
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+        }
+        
+
+.info-box{
+    width: 100%;
+    height: 65vh;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 4px solid #f6f6f6;
+    padding: 5px;
+    box-shadow: -9px 5px 12px #0000001f;
+
+}
+
+.profile-card{
+    margin: auto;
+}
+.profile-icon{
+    box-shadow: 0px 5px 15px 0px rgb(250, 68, 252), 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+    border-radius: 50%;
+    background: #f6f6f6;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.card-name{
+    font-weight: 700;
+    font-size: 23px;
+    color: #6944ff;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.card-txt{
+    font-size: 18px;
+    font-weight: 500;
+    color: #324e63;
+    margin-bottom: 15px;
+
+}
+.card-txt ion-icon{
+    font-size: 25px;
+    vertical-align: middle;
+    padding-right: 5px;
+    font-weight: 600;
+}
+
+strong{
+    font-weight: 700;
+}
+.class-content{
+    margin-left: 250px;
+    background-size: cover;
+    background: url("/img/dashboard.png");  
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 89vh;
+}
+.content .container{
+    padding: 50px;
+}
+.content .container h3{
+    padding-bottom: 10px;
+    font-weight: 500;
+}
+.box{
+    cursor: pointer;
+    position: relative;
+    width: 86px;
+    height: 90px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .5s;
+}
+.box:hover{
+    box-shadow: 0 25px 5px rgba(0,0,0,.2);
+    transform: scale(1.1);
+    border: 1px solid #cdd;
+    text-decoration: none;
+}
+.card__icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 8px;
+    left: calc(75% - 42px);
+    transition-delay: 0s;
+    background: var(--i);
+    position: absolute;
+}
+.card__icon ion-icon{
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.5s;
+    transition-delay: 0s;
+}
+.card-img{
+    display: block; 
+    margin: 1rem auto 0px; 
+    width: 6rem; 
+    height: 6rem; 
+    border-radius: 50%;
+}
+.card__content {
+    text-decoration: none;
+    position: relative;
+    color: #000;
+    padding: 1px;
+    text-align: center;
+    margin-top: 55px;
+    z-index: 1;
+    transition: 0.5s;
+    transition-delay: 0s;
+    
+  }
+
+  .card__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    font-weight: 600;
+  }

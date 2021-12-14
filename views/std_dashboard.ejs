@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/s-dashboard.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!--Navbar-->
+    <%- include('./partials/s-nav.ejs') %>  
+    <%- include('./partials/s-sidebar.ejs') %>  
+    <div class="box-container">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12"></div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="hello-box">
+                </div>
+                <div class="notification-box">
+                    <div class="header-box">
+                        <img src="/img/megaphone.png">
+                        <span class="notif-text">Notification</span>
+                    </div>
+                    <div class="content">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              A list item
+                              <span class="badge bg-primary rounded-pill">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              A second list item
+                              <span class="badge bg-primary rounded-pill">2</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              A third list item
+                              <span class="badge bg-primary rounded-pill">1</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                A third list item
+                                <span class="badge bg-primary rounded-pill">1</span>
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                A third list item
+                                <span class="badge bg-primary rounded-pill">1</span>
+                              </li>
+                          </ul>
+                    </div>                    
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="message-box">
+                    <div class="message-header">
+                        <h3>Message</h3>
+                        <p>See a part of message</p>
+                        <hr class="seperator">
+                    </div>
+                    <div class="message-wrapper">
+                        <div class="message-content">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="/img/alien.png" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="message-text">
+                                        <h4>Teacher</h4>
+                                        <p><a href="#">You have a new message</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="/img/alien.png" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="message-text">
+                                        <h4>Teacher</h4>
+                                        <p><a href="#">You have a new message</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="info-box">
+                    <div class="message-header">
+                        <h3>My Profile</h3>
+                        <hr class="seperator">
+                    </div>
+                    <div class="info-content">
+                        <div class="profile-card">
+                            <center>
+                                <img src="/img/graduated.png" alt="profile-card" class="profile-icon">
+                                <div class="card-name"><%= profile.name %></div>
+                                <div class="card-txt">Student ID: <strong><%= profile.sid %></strong></div>
+                                <div class="card-txt">Email: <strong><%= profile.email %></strong></div>
+                                <% if(profile.dob){ %> 
+                                    <div class="card-txt">Date of birth: <strong><%= profile.dob.getDate() %>-<%= profile.dob.getMonth() + 1 %>-<%= profile.dob.getFullYear() %></strong></div>
+                                <% }else{ %> 
+                                    <div class="card-txt">Date of birth: <strong></strong></div>
+                                <% } %>
+                                <div class="card-txt">Phone: <strong><%= profile.phone %></strong></div>
+                                <div class="card-txt"><ion-icon name="location-outline"></ion-icon>Studying at: <strong><%= profile.workplace %></strong></div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="./js/data.js"></script>
+    <script src="./js/dropdown.js"></script>
+
+</body>
+</html>

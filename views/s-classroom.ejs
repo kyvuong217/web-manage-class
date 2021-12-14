@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About_classroom</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/s-dashboard.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <%- include('./partials/s-nav.ejs') %>  
+    <%- include('./partials/s-sidebar.ejs') %>  
+    <div class="box-container">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+                <h3 class="title"><span class="text-style1">My </span><span class="textstyle">Classroom</span></h3>
+            </div>
+            <hr class="hr-style">
+
+            <div class="row">
+                <% classroom.forEach((data)=>{ %> 
+                <div class="col-md-7">
+                    <a href="/classroom/<%= data.cid %>">
+                        <div class="box">
+                            <figure class="card__icon" style="--i:#4eb7ff">
+                                <!-- <ion-icon name="color-palette-outline"></ion-icon> -->
+                                <ion-icon name="bookmarks-outline"></ion-icon>
+                            </figure>
+                            <div class="card__content">
+                                <h2 class="card__title">
+                                    <%= data.cname %>
+                                </h2>
+                                <p class="time">
+                                    <%= data.date_start.getDate() %>/<%= data.date_start.getMonth() + 1 %>/<%= data.date_start.getFullYear() %>
+                                    - <%= data.date_end.getDate() %>/<%= data.date_end.getMonth() + 1 %>/<%= data.date_end.getFullYear() %>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <% }) %>
+                </div>
+                <!-- <div class="col-md-5">
+                    <img src="/img/monster.jpg" alt="" class="monsters-img">
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="./js/data.js"></script>
+    <script src="./js/dropdown.js"></script>
+
+</body>
+</html>

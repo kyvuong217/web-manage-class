@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/classroom.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>    
+    <style>
+      .selected {
+          color: red;
+      }
+    </style>
+
+</head>
+<body>
+    <!--Navbar-->
+    <%- include('./partials/cls-nav.ejs') %>
+    <!--End Navbar-->
+    <!-- Sidebar -->
+    <%- include('./partials/cls-sidebar.ejs') %>
+    <!-- End Sidebar-->
+    
+    <!--Content-->
+    
+    <div class="zone">    
+        <div class="container">
+          <% if (message) { %> 
+            <div style="text-align: center; " class="alert alert-<%= message.type %> alert-dismissible fade show" id="alert-message">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong><%= message.message %></strong>
+            </div>
+          <% } %>
+            <div class="tool-box">
+              <h5 style="text-align: center;padding: 10px;background-color: #4cb3bd;color:white;text-transform: uppercase;">Bảng điểm kết quả học tập học kỳ ...</h5>
+              <div class="control-bar">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="show-stuff">
+                  <select class="form-select selector">
+                    <option selected>School year</option>
+                    <option value="1">2020-2021</option>
+                    <option value="2">2021-2022</option>
+                    <option value="3">2022-2023</option>
+                  </select>
+                  <select class="form-select selector" >
+                      <option selected>Semester</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                  </select>
+                  <button class="btn btn-info add-semester">Show</button>
+                </div>
+                <% if(teacher == true){ %> 
+                <div class="add-stuff">
+                  <button type="button" class="btn btn-info add-semester" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i> Add New</button>
+                  <button type="button" class="btn btn-info add-semester" data-toggle="modal" data-target="#editor"><i class="fa fa-plus"></i> Add Semester</button>
+                </div>
+                <% }else{ %> 
+                  <div class="add-stuff">
+                    <button type="button" class="btn btn-info add-semester" data-toggle="modal" data-target="#add" disabled><i class="fa fa-plus"></i> Add New</button>
+                    <button type="button" class="btn btn-info add-semester" data-toggle="modal" data-target="#editor" disabled><i class="fa fa-plus"></i> Add Semester</button>
+                  </div>
+                <% } %>
+                <!-- Modal add-->
+                <div class="modal fade" id="add">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                          <h4 class="modal-title">Add Point</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <!-- Modal body -->
+                      <form action="/addPoint/<%= details.cid %>" method="POST">
+                      <div class="modal-body">
+                          <div class="form-group">
+                              <label class="labels">Student Name</label>
+                              <div class="form-floating">
+                                <select class="form-select selector" name="sid" style="width:100%" >
+                                  <option selected>Name</option>
+                                  <% sid.forEach((sid)=>{ %>
+                                  <option value="<%= sid.sid %>"><%= sid.name %></option>
+                                  <% }) %>
+                                </select>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="labels">GPA</label>
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="tbtl">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="labels">Previous Semester GPA</label>
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="pre_tbhk">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="labels">Current Semester GPA</label>
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="tbhk">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="labels">TrainPoint</label>
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="trainpoint">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="labels">Semester Id</label>
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="sm_id">
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                              <button class="btn btn-primary" type="submit" id="btnUpdateSubmit">
+                                  Add
+                              </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <table class="table table-bordered " id="display-table">
+                <thead style="background: #4cb3bd; color: whitesmoke;">
+                  <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">GPA</th>
+                    <th scope="col">Previous SGPA</th>
+                    <th scope="col">Semester GPA</th>
+                    <th scope="col">TrainPoint</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% let i = 0;
+                  showPoint.forEach((data)=>{
+                    i = i + 1
+                  %>
+                  <tr>
+                   
+                    <th scope="row"><%= i %></th>
+                    <td><%= data.name %></td>
+                    <td><%= data.tbtl %></td>
+                    <td><%= data.pre_tbhk %></td>
+                    <td class="tbhk"><%= data.tbhk %></td>
+                    <td><%= data.trainpoint %></td>
+                    <td><%= data.sm_name %></td>
+                    <td><a class="delete" href="/statistic/<%= details.cid %>/<%= data.id %>"><ion-icon name="trash-bin-outline"></ion-icon></a></td>
+                    
+                  </tr>
+                  <% }) %>
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal popup-->
+    <!-- <div class="modal fade" id="setting">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Highlight Option</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="labels">Warning Level</label>
+                    <div class="form-floating">
+                      <select class="form-select selector" id="level" name="sname" style="width:100%">
+                        <option value="1"><1</option>
+                        <option value="2"><2</option>
+                        <option value="3"><3</option>
+                        <option value="4"><4</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="labels">Enter your level</label>
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="lv">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" id="save" onclick="getLevel()">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div> -->
+            <!-- Modal for edit -->
+    <div class="modal fade" id="editor">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Semester</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <form action="/addSemester/<%= details.cid %>" method="POST" role="form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="labels">Semester name</label>
+                        <div class="form-floating">
+                          <select class="form-select selector" name="sname" style="width:100%" >
+                            <option selected>Semester</option>
+                            <option value="hk1">hk1</option>
+                            <option value="hk2">hk2</option>
+                            <option value="hk3">hk3</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="labels">Year</label>
+                        <div class="form-floating">
+                          <select class="form-select selector" name="year" style="width:100%" >
+                            <option selected>Year</option>
+                            <option value="2021"> 2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit" id="btnUpdateSubmit">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+      highlight_row();
+      
+      function getLevel(){
+          var level = document.querySelector('#lv').value;
+          // alert(level)
+          return level;
+      }
+
+      function highlight_row() {
+          var cells = document.querySelectorAll('.tbhk');
+          let defaut = 4;
+          var save = document.querySelector('#save');
+          var btn = $('#save');
+
+          // btn.click(function(){
+          //   var a = getLevel()
+          //   alert(a)
+          // })
+          Array.from(cells).forEach(function(el){
+            // var level = document.querySelector('#lv').value;
+            
+            if(el.innerHTML < 4){
+              var rowSelected = el.parentNode;
+              rowSelected.style.backgroundColor = "yellow";
+              rowSelected.className += " selected";
+            }
+          })
+      }
+      </script>
+    <script src="./js/data.js"></script>
+    <script src="./js/alert.js"></script>
+    <script src="./js/dropdown.js"></script>
+
+</body>
+</html>

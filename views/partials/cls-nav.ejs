@@ -1,0 +1,68 @@
+<% if (teacher == true){ %>
+<input type="checkbox" id="check" checked>
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand">
+            <label for="check" class="menu-icon">
+                <ion-icon name="menu-outline"></ion-icon>
+            </label> 
+            <span class="textstyle"><%= details.cname %></span>
+        </a>
+        <div class="middle-items">
+           <ul class="middle-list">
+               <li class="item active"><a href="/classroom/<%= details.cid %>">Class Story</a></li>
+               <li class="item"><a href="/statistic/<%= details.cid %>">Transcripts</a></li>
+               <li class="item"><a href="/member/<%= details.cid %>">Everyone</a></li>
+           </ul> 
+
+        </div>
+        <!-- <div class="search-box">
+            <input type="text" name="search-google" id="search-google" placeholder="Search..." class="form-control litanswer">
+        </div> -->
+        <div class="right_items">
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-none dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="u_name" style="color:#000;">Hi,<%= key.name %></span> 
+                    <img src="./img/gv.jpg" alt="logo" class="avatar">
+                </button>
+                <div class="dropdown-menu">
+                    <!-- <a class="dropdown-item" href="/changePassword"><i class="fa fa-key"></i>Change Password</a> -->
+                    <a class="dropdown-item" href="/view_profile"><i class="fa fa-user"></i> Edit Profile</a>
+                    <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out"></i> Log out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+<% }else{ %>
+    <input type="checkbox" id="check" checked>
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand">
+            <label for="check" class="menu-icon">
+                <ion-icon name="menu-outline"></ion-icon>
+            </label> 
+            <span class="textstyle"><%= details.cname %></span>
+        </a>
+        <div class="middle-items">
+           <ul class="middle-list">
+               <li class="item active"><a href="/classroom/<%= details.cid %>">Class Story</a></li>
+               <li class="item"><a href="/statistic/<%= details.cid %>">Transcripts</a></li>
+               <li class="item"><a href="/member/<%= details.cid %>">Everyone</a></li>
+           </ul> 
+        </div>
+        
+        <div class="right_items">
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-none dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="u_name" style="color:#000;">Hi,<%= key.name %></span> 
+                    <img src="./img/student.png" alt="logo" class="avatar">
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/changePassword"><i class="fa fa-key"></i>Change Password</a>
+                    <a class="dropdown-item" href="/edit_profile/<%= key.sid %>"><i class="fa fa-user"></i> Edit Profile</a>
+                    <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out"></i> Log out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+<% } %>
